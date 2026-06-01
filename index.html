@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Central Tendency Modern</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images.jpg">
+
+  <style>
+    *{
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body{
+      background: #050816;
+      overflow-x: hidden;
+      color: white;
+    }
+
+    .gradient-text{
+      background: linear-gradient(to right,#ffffff,#c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .glass{
+      background: rgba(10,15,40,0.7);
+      border: 1px solid rgba(139,92,246,0.2);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 20px rgba(139,92,246,0.15);
+    }
+
+    .menu-item{
+      transition: 0.3s;
+    }
+
+    .menu-item:hover{
+      background: rgba(139,92,246,0.2);
+      transform: translateX(5px);
+    }
+
+    .card-hover{
+      transition: 0.4s;
+    }
+
+    .card-hover:hover{
+      transform: translateY(-10px);
+      box-shadow: 0 0 30px rgba(168,85,247,0.3);
+    }
+
+    .glow{
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: purple;
+      filter: blur(150px);
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    .fade-up{
+      opacity: 0;
+      transform: translateY(50px);
+      transition: 1s;
+    }
+
+    .fade-up.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BACKGROUND GLOW -->
+  <div class="glow top-0 left-0"></div>
+  <div class="glow bottom-0 right-0 bg-blue-500"></div>
+
+  <!-- NAVBAR -->
+  <nav class="flex justify-between items-center px-10 py-6 border-b border-purple-900">
+    <h1 class="text-2xl font-bold text-purple-300">
+       Statistika Probabilitas ><
+    </h1>
+
+    <ul class="hidden md:flex gap-10 text-lg">
+      <li class="text-purple-400">Beranda</li>
+      <a href="#Materi"><li>Materi</li></a>
+      <a href="#Contoh"><li>Contoh</li></a>
+      
+    </ul>
+
+    <a href="#Calculator" class="border border-purple-500 px-6 py-2 rounded-full hover:bg-purple-700 transition">
+        Kalkulator
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="grid md:grid-cols-2 gap-10 items-center px-10 py-20">
+
+    <div class="fade-up">
+      <h1 class="text-6xl font-bold leading-tight mb-6">
+        <span class="gradient-text">Central Tendency</span>
+      </h1>
+
+      <h2 class="text-4xl text-slate-300 mb-8">
+        dalam Statistika Probabilitas
+      </h2>
+
+      <p class="text-slate-400 text-lg leading-relaxed mb-8">
+        Ukuran pemusatan data yang memberikan gambaran nilai pusat
+        dari suatu distribusi data: Mean, Median, dan Modus.
+      </p>
+
+      <div class="flex gap-5">
+        <button class="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-full text-lg transition">
+         <a href="https://youtu.be/DQZT7jbKMY4?si=grnsYsGrSfh2YqVq">Pelajari Materi</a> 
+        </button>
+
+        
+      </div>
+    </div>
+
+    <!-- CHART -->
+    <div class="glass rounded-3xl p-6 fade-up">
+      <h2 class="text-xl mb-5 text-purple-300 font-semibold">
+        DISTRIBUSI FREKUENSI
+      </h2>
+
+      <canvas id="lineChart"></canvas>
+    </div>
+
+  </section>
+
+  <!-- CONTENT -->
+  <section class="grid lg:grid-cols-3 gap-8 px-10 pb-20" id="Materi">
+
+    <!-- SIDEBAR -->
+    <div class="glass rounded-3xl p-6 fade-up">
+
+      <h2 class="text-purple-400 text-xl font-bold mb-6">
+        Nama Kelompok
+      </h2>
+
+      <div class="space-y-4">
+
+        <div class="menu-item bg-purple-700 p-4 rounded-xl">
+         [ Ⅰ ] > 𝐇𝐀𝐅𝐈𝐃 𝐍𝐔𝐑 𝐑𝐀𝐌𝐀𝐃𝐇𝐀𝐍     [②⑤③①②⓪②⑥]       
+        </div>
+
+        <div class="menu-item p-4 rounded-xl">
+         [ Ⅱ ]  > 𝐄𝐊𝐎 𝐖𝐀𝐇𝐘𝐔 𝐇𝐄𝐑𝐍𝐀𝐍𝐓𝐎   [②⑤③①②⓪②②]
+        </div>
+
+        <div class="menu-item p-4 rounded-xl">
+         [ ⅡⅠ ] > 𝐑𝐢𝐳𝐚𝐥𝐝𝐢 𝐇𝐚𝐛𝐢𝐞𝐛𝐮𝐥𝐥𝐨𝐡        [②⑤③①②⓪⑤⑥]
+        </div>
+
+        <div class="menu-item p-4 rounded-xl">
+         [ Ⅳ ] > 𝐀𝐡𝐦𝐚𝐝 𝐅𝐚𝐢𝐳𝐚𝐥             [②⑤③①②⓪⓪③]
+        </div>
+
+        <div class="menu-item p-4 rounded-xl">
+          [ Ⅴ ] > 𝐌.𝐙𝐢𝐝𝐚𝐧𝐞 𝐑𝐢𝐬𝐤𝐢 𝐑𝐚𝐦𝐚𝐝𝐡𝐚𝐧𝐢 [②⑤③①②⓪③③]
+        </div>
+
+        <div class="menu-item p-4 rounded-xl">
+          
+        </div>
+
+        <div class="menu-item p-4 rounded-xl">
+          
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="lg:col-span-2 glass rounded-3xl p-8 fade-up">
+
+      <h2 class="text-4xl font-bold mb-6">
+        Pengertian Central Tendency
+      </h2>
+
+      <p class="text-slate-400 leading-relaxed text-lg mb-10">
+        Central Tendency adalah ukuran yang mewakili pusat dari
+        sekumpulan data. Ukuran ini membantu kita memahami di mana
+        sebagian besar data berada.
+      </p>
+
+      <!-- CARDS -->
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- MEAN -->
+        <div class="card-hover border border-blue-500/30 bg-blue-500/10 rounded-3xl p-6">
+
+          <div class="w-20 h-20 rounded-full bg-blue-500/20 flex items-center justify-center text-3xl mb-5">
+            📊
+          </div>
+
+          <h3 class="text-3xl font-bold text-blue-400 mb-4">
+            Mean
+          </h3>
+
+          <p class="text-slate-400 mb-6">
+            Jumlah seluruh data dibagi banyaknya data.
+          </p>
+
+          <div class="bg-black/30 p-4 rounded-xl text-center text-xl">
+            x̄ = Σx / n
+          </div>
+
+        </div>
+
+        <!-- MEDIAN -->
+        <div class="card-hover border border-green-500/30 bg-green-500/10 rounded-3xl p-6">
+
+          <div class="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center text-3xl mb-5">
+            📈
+          </div>
+
+          <h3 class="text-3xl font-bold text-green-400 mb-4">
+            Median
+          </h3>
+
+          <p class="text-slate-400 mb-6">
+            Nilai tengah dari data yang telah diurutkan.
+          </p>
+
+          <div class="bg-black/30 p-4 rounded-xl text-center text-xl">
+            Me = data tengah
+          </div>
+
+        </div>
+
+        <!-- MODUS -->
+        <div class="card-hover border border-yellow-500/30 bg-yellow-500/10 rounded-3xl p-6">
+
+          <div class="w-20 h-20 rounded-full bg-yellow-500/20 flex items-center justify-center text-3xl mb-5">
+            📉
+          </div>
+
+          <h3 class="text-3xl font-bold text-yellow-400 mb-4">
+            Modus
+          </h3>
+
+          <p class="text-slate-400 mb-6">
+            Nilai yang paling sering muncul.
+          </p>
+
+          <div class="bg-black/30 p-4 rounded-xl text-center text-xl">
+            Mo = frekuensi tertinggi
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CHARTS -->
+  <section class="grid lg:grid-cols-2 gap-8 px-10 pb-20">
+
+    <!-- HISTOGRAM -->
+    <div class="glass rounded-3xl p-6 fade-up">
+
+      <h2 class="text-purple-300 font-semibold text-xl mb-5">
+        HISTOGRAM FREKUENSI
+      </h2>
+
+      <canvas id="barChart"></canvas>
+
+    </div>
+
+    <!-- POLYGON -->
+    <div class="glass rounded-3xl p-6 fade-up">
+
+      <h2 class="text-purple-300 font-semibold text-xl mb-5">
+        POLIGON FREKUENSI
+      </h2>
+
+      <canvas id="polygonChart"></canvas>
+
+    </div>
+
+  </section>
+
+  <!-- TABLE -->
+  <section class="px-10 pb-20" id="Contoh">
+    <div class="glass rounded-3xl p-8 fade-up">
+
+      <h2 class="text-3xl font-bold text-purple-300 mb-6">
+        CONTOH DATA KELOMPOK
+      </h2>
+
+      <div class="overflow-x-auto">
+
+        <table class="w-full border-collapse">
+
+          <thead>
+            <tr class="bg-purple-900/40">
+              <th class="p-4">Kelas Interval</th>
+              <th class="p-4">Titik Tengah (xi)</th>
+              <th class="p-4">Frekuensi (fi)</th>
+            </tr>
+          </thead>
+
+          <tbody class="text-center text-slate-300">
+
+            <tr class="border-b border-purple-900">
+              <td class="p-4">55 - 61</td>
+              <td>58</td>
+              <td>4</td>
+            </tr>
+
+            <tr class="border-b border-purple-900">
+              <td class="p-4">62 - 68</td>
+              <td>65</td>
+              <td>6</td>
+            </tr>
+
+            <tr class="border-b border-purple-900">
+              <td class="p-4">69 - 75</td>
+              <td>72</td>
+              <td>19</td>
+            </tr>
+
+            <tr class="border-b border-purple-900">
+              <td class="p-4">76 - 82</td>
+              <td>79</td>
+              <td>7</td>
+            </tr>
+
+            <tr class="border-b border-purple-900">
+              <td class="p-4">83 - 89</td>
+              <td>86</td>
+              <td>9</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CONTOH -->
+<!-- CONTOH -->
+  <section class="max-w-6xl mx-auto px-6 py-10">
+    <div class="glass rounded-3xl p-10 fade-up">
+      <h2 class="text-4xl font-bold mb-6 gradient-text text-center">
+        Contoh Perhitungan
+      </h2>
+
+      <div class="bg-slate-900 rounded-2xl p-5 text-center mb-8 text-xl">
+        Data: 10, 15, 20, 20, 25, 30, 35
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="bg-blue-500/20 rounded-2xl p-6 hover:scale-105 transition">
+          <h3 class="text-2xl font-bold mb-3 text-blue-300">Mean</h3>
+          <p>(10 + 15 + 20 + 20 + 25 + 30 + 35) / 7</p>
+          <p class="text-3xl font-bold mt-4">22.14</p>
+        </div>
+
+        <div class="bg-purple-500/20 rounded-2xl p-6 hover:scale-105 transition">
+          <h3 class="text-2xl font-bold mb-3 text-purple-300">Median</h3>
+          <p>Nilai tengah data</p>
+          <p class="text-3xl font-bold mt-4">20</p>
+        </div>
+
+        <div class="bg-pink-500/20 rounded-2xl p-6 hover:scale-105 transition">
+          <h3 class="text-2xl font-bold mb-3 text-pink-300">Modus</h3>
+          <p>Nilai paling sering muncul</p>
+          <p class="text-3xl font-bold mt-4">20</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+<section class="max-w-5xl mx-auto px-6 py-20" id="Calculator">
+    <div class="glass rounded-3xl p-10 fade-up">
+      <h2 class="text-4xl font-bold gradient-text mb-8 text-center">
+        Kalkulator Central Tendency
+      </h2>
+
+      <div class="flex flex-col gap-5">
+        <input
+          id="dataInput"
+          type="text"
+          placeholder="Masukkan angka contoh: 10,20,30,40"
+          class="w-full p-4 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none"
+        />
+
+        <button
+          onclick="calculateData()"
+          class="bg-indigo-600 hover:bg-indigo-700 transition p-4 rounded-xl text-lg font-semibold"
+        >
+          Hitung Sekarang
+        </button>
+      </div>
+
+      <div id="result" class="mt-10 hidden">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-blue-500/20 p-6 rounded-2xl text-center">
+            <h3 class="text-2xl font-bold text-blue-300 mb-3">Mean</h3>
+            <p id="meanResult" class="text-3xl font-bold"></p>
+          </div>
+
+          <div class="bg-purple-500/20 p-6 rounded-2xl text-center">
+            <h3 class="text-2xl font-bold text-purple-300 mb-3">Median</h3>
+            <p id="medianResult" class="text-3xl font-bold"></p>
+          </div>
+          <div class="bg-pink-500/20 p-6 rounded-2xl text-center">
+            <h3 class="text-2xl font-bold text-pink-300 mb-3">Modus</h3>
+            <p id="modeResult" class="text-3xl font-bold"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-8 text-slate-400 border-t border-slate-800">
+    <p>© 2026 Central Tendency | Statistika Probabilitas</p>
+  </footer>
+
+  <script>
+    // Scroll Animation
+    const fadeElements = document.querySelectorAll('.fade-up');
+
+    const showOnScroll = () => {
+      fadeElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100){
+          el.classList.add('show');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', showOnScroll);
+    showOnScroll();
+
+    // Calculator
+    function calculateData() {
+      const input = document.getElementById('dataInput').value;
+
+      if (!input) {
+        alert('Masukkan data terlebih dahulu!');
+        return;
+      }
+
+      const data = input.split(',').map(Number).sort((a,b) => a-b);
+
+      // Mean
+      const mean = data.reduce((a,b) => a+b,0) / data.length;
+
+      // Median
+      let median;
+      const mid = Math.floor(data.length / 2);
+
+      if (data.length % 2 === 0) {
+        median = (data[mid - 1] + data[mid]) / 2;
+      } else {
+        median = data[mid];
+      }
+
+      // Mode
+      const frequency = {};
+      let maxFreq = 0;
+      let mode = [];
+
+      data.forEach(num => {
+        frequency[num] = (frequency[num] || 0) + 1;
+
+        if (frequency[num] > maxFreq) {
+          maxFreq = frequency[num];
+        }
+      });
+
+      for (let key in frequency) {
+        if (frequency[key] === maxFreq) {
+          mode.push(key);
+        }
+      }
+
+      document.getElementById('meanResult').innerText = mean.toFixed(2);
+      document.getElementById('medianResult').innerText = median;
+      document.getElementById('modeResult').innerText = mode.join(', ');
+
+      document.getElementById('result').classList.remove('hidden');
+    }
+  </script>
+
+
+  <script>
+
+    // ANIMATION
+    const fadeUp = document.querySelectorAll('.fade-up');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    fadeUp.forEach(el => observer.observe(el));
+
+    // DATA
+    const labels = ['55-61','62-68','69-75','76-82','83-89','90-96','97-103'];
+
+    const dataValues = [4,6,19,7,9,3,2];
+
+    // LINE CHART
+    new Chart(document.getElementById('lineChart'),{
+      type:'line',
+      data:{
+        labels:labels,
+        datasets:[{
+          data:dataValues,
+          borderColor:'#d946ef',
+          backgroundColor:'rgba(217,70,239,0.2)',
+          fill:true,
+          tension:0.4,
+          pointRadius:6,
+          pointBackgroundColor:[
+            '#c084fc',
+            '#60a5fa',
+            '#38bdf8',
+            '#4ade80',
+            '#facc15',
+            '#fb923c',
+            '#f472b6'
+          ]
+        }]
+      },
+      options:{
+        plugins:{
+          legend:{display:false}
+        },
+        scales:{
+          x:{
+            ticks:{color:'#ccc'},
+            grid:{color:'rgba(255,255,255,0.05)'}
+          },
+          y:{
+            ticks:{color:'#ccc'},
+            grid:{color:'rgba(255,255,255,0.05)'}
+          }
+        }
+      }
+    });
+
+    // BAR CHART
+    new Chart(document.getElementById('barChart'),{
+      type:'bar',
+      data:{
+        labels:labels,
+        datasets:[{
+          data:dataValues,
+          borderRadius:8,
+          backgroundColor:[
+            '#a855f7',
+            '#6366f1',
+            '#38bdf8',
+            '#34d399',
+            '#facc15',
+            '#fb923c',
+            '#ec4899'
+          ]
+        }]
+      },
+      options:{
+        plugins:{
+          legend:{display:false}
+        },
+        scales:{
+          x:{
+            ticks:{color:'#ccc'},
+            grid:{color:'rgba(255,255,255,0.05)'}
+          },
+          y:{
+            ticks:{color:'#ccc'},
+            grid:{color:'rgba(255,255,255,0.05)'}
+          }
+        }
+      }
+    });
+
+    // POLYGON CHART
+    new Chart(document.getElementById('polygonChart'),{
+      type:'line',
+      data:{
+        labels:labels,
+        datasets:[{
+          data:dataValues,
+          borderColor:'#c084fc',
+          backgroundColor:'rgba(192,132,252,0.1)',
+          fill:true,
+          tension:0.5,
+          pointRadius:6,
+          pointBackgroundColor:[
+            '#c084fc',
+            '#60a5fa',
+            '#38bdf8',
+            '#4ade80',
+            '#facc15',
+            '#fb923c',
+            '#f472b6'
+          ]
+        }]
+      },
+      options:{
+        plugins:{
+          legend:{display:false}
+        },
+        scales:{
+          x:{
+            ticks:{color:'#ccc'},
+            grid:{color:'rgba(255,255,255,0.05)'}
+          },
+          y:{
+            ticks:{color:'#ccc'},
+            grid:{color:'rgba(255,255,255,0.05)'}
+          }
+        }
+      }
+    });
+
+  </script>
+
+</body>
+</html>
